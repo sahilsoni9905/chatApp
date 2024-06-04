@@ -38,11 +38,13 @@ class StatusRepository {
       String imageUrl = await ref
           .read(CommonFirebaseStorageRepositoryProvider)
           .storeFileToFirebase('/status/$statusId$uid', statusImage);
+      print('firebase storage me save ho gya');
       List<Contact> contacts = [];
 
       if (await FlutterContacts.requestPermission()) {
         contacts = await FlutterContacts.getContacts(withProperties: true);
       } //withproperties give number of the contacts .. if we keep it false we will only get the names
+      print('jitne bhi contacts hai sb aa gye');
       List<String> uidWhoCanSee = [];
       for (int i = 0; i < contacts.length; i++) {
         var userDataFirebase = await firestore
@@ -54,6 +56,7 @@ class StatusRepository {
           var userData = userModel.fromMap(userDataFirebase.docs[0].data());
           uidWhoCanSee.add(userData.uid);
         }
+        print('got list of all who can see');
       }
 
       List<String> statusImageUrls = [];

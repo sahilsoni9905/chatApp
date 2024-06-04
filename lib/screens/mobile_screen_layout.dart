@@ -114,10 +114,15 @@ class _MobileScreenState extends ConsumerState<MobileScreen>
             }
           },
           backgroundColor: tabColor,
-          child: const Icon(
-            Icons.comment,
-            color: Colors.white,
-          ),
+          child: tabBarController.index == 0
+              ? Icon(
+                  Icons.comment,
+                  color: Colors.white,
+                )
+              : Icon(
+                  Icons.camera_enhance,
+                  color: Colors.white,
+                ),
         ),
       ),
     );
