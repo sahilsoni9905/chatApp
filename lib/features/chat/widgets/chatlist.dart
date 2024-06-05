@@ -79,10 +79,11 @@ class _ChatListState extends ConsumerState<ChatList> {
                 repliedMessageType: messageData.repliedMessageType,
                 onLeftSwipe: () =>
                     onMessageSwipe(messageData.text, true, messageData.type),
-                    isSeen : messageData.isSeen,
+                isSeen: messageData.isSeen,
               );
             } else {
               return SenderMessageCart(
+                isSeen: messageData.isSeen,
                 message: messageData.text,
                 date: timeSent,
                 type: messageData.type,

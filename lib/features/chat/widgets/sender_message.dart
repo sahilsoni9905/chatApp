@@ -12,6 +12,7 @@ class SenderMessageCart extends StatelessWidget {
   final String username;
   final MessageEnum repliedMessageType;
   final VoidCallback onRightSwipe;
+  final bool isSeen; // Added isSeen to match MyMessageCart
   const SenderMessageCart(
       {super.key,
       required this.message,
@@ -20,7 +21,8 @@ class SenderMessageCart extends StatelessWidget {
       required this.onRightSwipe,
       required this.repliedMessageType,
       required this.repliedText,
-      required this.username});
+      required this.username,
+      required this.isSeen}); // Added isSeen to the constructor
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class SenderMessageCart extends StatelessWidget {
             elevation: 1,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            color: Color.fromARGB(158, 59, 59, 59),
+            color: messageColor, // Changed to messageColor to be consistent
             margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             child: Stack(
               children: [
@@ -73,7 +75,7 @@ class SenderMessageCart extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  bottom: 2,
+                  bottom: 4, // Changed to 4 to be consistent
                   right: 10,
                   child: Row(children: [
                     Text(
@@ -83,10 +85,10 @@ class SenderMessageCart extends StatelessWidget {
                     const SizedBox(
                       width: 5,
                     ),
-                    const Icon(
-                      Icons.done_all,
+                    Icon(
+                      isSeen ? Icons.done_all : Icons.done, // Updated to use isSeen
                       size: 20,
-                      color: Colors.white60,
+                      color: isSeen ? Colors.blue : Colors.white60,
                     )
                   ]),
                 )
