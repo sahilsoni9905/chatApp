@@ -37,7 +37,8 @@ class ContactList extends ConsumerWidget {
                             MobileChatScreen.routeName,
                             arguments: {
                               'name': chatContactData.name,
-                              'uid': chatContactData.contactId
+                              'uid': chatContactData.contactId,
+                              'profilePic' : chatContactData.profilePic,
                             },
                           );
                         },

@@ -36,15 +36,14 @@ class Status {
 
   factory Status.fromMap(Map<String, dynamic> map) {
     return Status(
-        uid: map['uid'] as String,
-        username: map['username'] as String,
-        phoneNumber: map['phoneNumber'] as String,
-        photoUrl: List<String>.from((map['photoUrl'] as List<String>)),
-        createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
-        profilePic: map['profilePic'] as String,
-        statusId: map['statusId'] as String,
-        whoCanSee: List<String>.from(
-          (map['whoCanSee'] as List<String>),
-        ));
+      uid: map['uid'] ?? '',
+      username: map['username'] ?? '',
+      phoneNumber: map['phoneNumber'] ?? '',
+      photoUrl: List<String>.from(map['photoUrl']),
+      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt']),
+      profilePic: map['profilePic'] ?? '',
+      statusId: map['statusId'] ?? '',
+      whoCanSee: List<String>.from(map['whoCanSee']),
+    );
   }
 }

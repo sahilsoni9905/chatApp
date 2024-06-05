@@ -11,6 +11,7 @@ class ConfirmStatusScreen extends ConsumerWidget {
   const ConfirmStatusScreen({super.key, required this.file});
 
   void addStatus(WidgetRef ref, BuildContext context) {
+    print("reached to part 1");
     ref.read(StatusControllerProvider).addStatus(file, context);
     Navigator.pop(context);
   }

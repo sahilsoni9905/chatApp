@@ -27,8 +27,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       final arguements = settings.arguments as Map<String, dynamic>;
       final name = arguements['name'];
       final uid = arguements['uid'];
+      final profilePic = arguements['profilePic'];
+
       return MaterialPageRoute(
-          builder: (context) => MobileChatScreen(name: name, uid: uid));
+          builder: (context) => MobileChatScreen(
+                name: name,
+                uid: uid,
+                profilePic: profilePic,
+              ));
     case ConfirmStatusScreen.routeName:
       final file = settings.arguments as File;
       return MaterialPageRoute(
@@ -38,7 +44,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case StatusScreen.routeName:
       final status = settings.arguments as Status;
       return MaterialPageRoute(
-          builder: (context) =>  StatusScreen(
+          builder: (context) => StatusScreen(
                 status: status,
               ));
     default:
