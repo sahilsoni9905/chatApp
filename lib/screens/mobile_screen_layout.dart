@@ -60,7 +60,7 @@ class _MobileScreenState extends ConsumerState<MobileScreen>
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Whatsapp',
+            'LoopChat',
             style: TextStyle(
                 color: Colors.grey, fontSize: 22, fontWeight: FontWeight.w700),
           ),
@@ -106,6 +106,7 @@ class _MobileScreenState extends ConsumerState<MobileScreen>
             if (tabBarController.index == 0) {
               Navigator.pushNamed(context, SelectContactScreen.routeName);
             } else {
+              setState(() {});
               File? pickedImage = await pickImageFromGallery(context);
               if (pickedImage != null) {
                 Navigator.pushNamed(context, ConfirmStatusScreen.routeName,

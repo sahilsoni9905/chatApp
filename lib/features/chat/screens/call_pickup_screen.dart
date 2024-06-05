@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -70,11 +68,11 @@ class CallPickupScreen extends ConsumerWidget {
                         ),
                         IconButton(
                           onPressed: () {
-                             Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => CallScreen(
-                  channelId: call.callId, call: call)));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CallScreen(
+                                        channelId: call.callId, call: call)));
                           },
                           icon: Icon(
                             Icons.call,

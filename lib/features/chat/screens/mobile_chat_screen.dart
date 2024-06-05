@@ -15,7 +15,11 @@ class MobileChatScreen extends ConsumerWidget {
   final String name;
   final String uid;
   final String profilePic;
-  const MobileChatScreen({super.key, required this.name, required this.uid , required this.profilePic});
+  const MobileChatScreen(
+      {super.key,
+      required this.name,
+      required this.uid,
+      required this.profilePic});
 
   void makeCall(WidgetRef ref, BuildContext context) {
     ref.read(callControllerProvider).makeCall(context, name, uid, profilePic);
@@ -23,44 +27,44 @@ class MobileChatScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return CallPickupScreen(
-      scaffold: Scaffold(
-        appBar: AppBar(
-          backgroundColor: appBarColor,
-          title: StreamBuilder<userModel>(
-              stream: ref.read(authControllerProvider).userDataById(uid),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Loader();
-                }
-                return Column(
-                  children: [
-                    Text(name),
-                    Text(
-                      snapshot.data!.isOnline ? 'online' : 'offline',
-                      style: const TextStyle(
-                          fontSize: 13, fontWeight: FontWeight.normal),
-                    )
-                  ],
-                );
-              }),
-          actions: [
-            IconButton(onPressed: () => makeCall(ref , context), icon: Icon(Icons.video_call)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.call)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
-          ],
-        ),
-        body: Column(
-          //chat list
-          //text input
-          children: [
-            Expanded(
-                child: ChatList(
-              recieverUserId: uid,
-            )),
-            bottomChatField(recieverUserId: uid),
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: appBarColor,
+        title: StreamBuilder<userModel>(
+            stream: ref.read(authControllerProvider).userDataById(uid),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Loader();
+              }
+              return Column(
+                children: [
+                  Text(name),
+                  Text(
+                    snapshot.data!.isOnline ? 'online' : 'offline',
+                    style: const TextStyle(
+                        fontSize: 13, fontWeight: FontWeight.normal),
+                  )
+                ],
+              );
+            }),
+        actions: [
+          IconButton(
+              onPressed: () => makeCall(ref, context),
+              icon: Icon(Icons.video_call)),
+          IconButton(onPressed: () {}, icon: Icon(Icons.call)),
+          IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+        ],
+      ),
+      body: Column(
+        //chat list
+        //text input
+        children: [
+          Expanded(
+              child: ChatList(
+            recieverUserId: uid,
+          )),
+          bottomChatField(recieverUserId: uid),
+        ],
       ),
     );
   }
